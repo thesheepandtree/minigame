@@ -76,6 +76,8 @@ footer{max-width:1080px;margin:0 auto;padding:6px 16px 28px;font-size:12.5px;col
 #toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:.25s;z-index:9;max-width:90%;text-align:center;pointer-events:none}
 #toast.on{opacity:1;transform:translateX(-50%)}
 input.invalid{border-color:#b3261e;background:#fff6f5}
+.know{background:#fff8e6;border-left:5px solid #f2b705;border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.chips span{background:#fff;border:1.5px solid #f2d27a;border-radius:99px;padding:4px 10px;font-weight:600;font-size:13px}
 </style>
 </head>
 <body>
@@ -94,6 +96,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
       <p>Hoàn thành 2 chặng game với tốc độ nhanh nhất. Top 20 người nhanh nhất, chốt lúc <b>20:00 ngày 21/11/2026</b>, sẽ nhận ngay phần quà từ Fresheen Health.</p>
       <div class="pl">Tổng giá trị giải thưởng</div>
       <div class="pv">3.500.000đ</div>
+      <p style="font-size:13px">20 phần quà, mỗi phần 01 gói Chelamax Zinc Biglycinate (giá niêm yết 175.000đ/gói)</p>
     </div>
     <div class="journey">
       <div><div class="spr" data-s="0"></div><span>Mầm Cây đang cần vi chất</span></div>
@@ -107,7 +110,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
       <label for="phone">Số điện thoại</label><input id="phone" required inputmode="tel" maxlength="12" autocomplete="tel" placeholder="09xxxxxxxx"><div id="phw" class="warn" hidden></div>
       <label for="addr">Địa chỉ nhận quà</label><input id="addr" required maxlength="200" autocomplete="street-address">
       <label for="yob">Năm sinh</label><input id="yob" type="number" required min="1920" max="2025" inputmode="numeric" placeholder="Ví dụ: 1995">
-      <div id="agew" class="warn" hidden>Kẽm Amagain &amp; Magie Amagain chỉ dành cho người trên 18 tuổi. Bạn vẫn chơi được, nhưng không nằm trong danh sách nhận quà.</div>
+      <div id="agew" class="warn" hidden>Lưu ý: sản phẩm không dành cho người dưới 18 tuổi sử dụng. Bạn vẫn chơi và được tính vào bảng xếp hạng bình thường.</div>
       <label for="veg">Bạn có ăn chay không?</label>
       <select id="veg"><option value="Không">Tôi không ăn chay</option><option value="Thỉnh thoảng">Thỉnh thoảng ăn chay</option><option value="Ăn chay trường">Ăn chay trường</option></select>
       <label class="chk"><input type="checkbox" id="ok" required> Tôi đồng ý để Fresheen Health lưu thông tin này để liên hệ trao quà và tôi đã đọc thể lệ chương trình.</label>
@@ -138,6 +141,8 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
       <button class="bk m" data-a="m">Giỏ Magie<small>→</small></button>
       <button class="bk n" data-a="n">Không liên quan<small>↓</small></button>
     </div>
+    <div class="know"><b>Bạn có biết?</b> Không chỉ hàu hay thịt bò, nhiều thực phẩm <b>không có nguồn gốc động vật</b> cũng giàu kẽm. Đây là nguồn kẽm quan trọng cho người ăn chay:
+      <div class="chips"><span>🎃 Hạt bí</span><span>🥜 Hạt điều</span><span>🫘 Đậu lăng</span><span>🧆 Đậu gà</span><span>🥣 Yến mạch</span><span>⚪ Hạt mè</span><span>🟨 Đậu hũ</span></div></div>
   </section>
 
   <section id="s-i2" class="screen">
@@ -174,7 +179,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
     <p id="rs" class="small">Đang ghi nhận kết quả...</p>
     <div class="note" id="prz"></div>
     <div class="note"><b>Kẽm</b> có trong hàu, thịt bò, hạt bí, hạt điều, đậu gà, đậu lăng, yến mạch.<br><b>Magie</b> có trong hạnh nhân, rau bina, chuối, bơ, gạo lứt, chocolate đen, hạt bí.<br>Người ăn chay nên ngâm đậu, hạt và ăn đa dạng hạt mỗi ngày để bổ sung kẽm tốt hơn.</div>
-    <p class="small">Khi cần bổ sung thêm, bạn có thể tham khảo Kẽm Amagain &amp; Magie Amagain (chỉ dành cho người trên 18 tuổi).</p>
+    <p class="small">Khi cần bổ sung thêm, bạn có thể tham khảo Kẽm Amagain &amp; Magie Amagain (không dành cho người dưới 18 tuổi sử dụng).</p>
     <button class="btn share">Chia sẻ game cho bạn bè</button>
     <button class="btn fb-b alt" id="rp">Chơi lại để cải thiện thời gian</button>
   </section>
@@ -184,7 +189,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
   <h2>Top 20 nhanh nhất</h2>
   <div id="cd"></div>
   <ol id="lb"></ol>
-  <p class="small">Chỉ tính người chơi từ 18 tuổi. Mỗi số điện thoại giữ một kết quả tốt nhất. Danh sách chốt lúc 20:00 ngày 21/11.</p>
+  <p class="small">Mỗi số điện thoại giữ một kết quả tốt nhất. Danh sách chốt lúc 20:00 ngày 21/11.</p>
 <button class="btn share">Rủ bạn bè cùng chơi</button>
   <button class="btn fb">Chia sẻ lên Facebook</button>
 </aside>
@@ -342,13 +347,12 @@ $('#d2').onclick=()=>finish();
 async function finish(){
   tStop();const total=Math.round(ms());
   $('#rt').textContent=fmt(total);document.body.classList.add('done');show('s-res');
-  $('#prz').innerHTML=P.age>=18?'Bạn có cơ hội nhận <b>01 gói Chelamax Zinc Biglycinate</b> nếu nằm trong <b>Top 20 người nhanh nhất</b> khi bảng xếp hạng chốt lúc <b>20:00 ngày 21/11/2026</b>.':'Phần quà chỉ dành cho người từ 18 tuổi trở lên. Cảm ơn bạn đã cùng Mầm Cây nở hoa!';
+  $('#prz').innerHTML='Bạn có cơ hội nhận <b>01 gói Chelamax Zinc Biglycinate</b> nếu nằm trong <b>Top 20 người nhanh nhất</b> khi bảng xếp hạng chốt lúc <b>20:00 ngày 21/11/2026</b>.'+(P.age<18?'<br><span class="small">Lưu ý: sản phẩm không dành cho người dưới 18 tuổi sử dụng.</span>':'');
   const rs=$('#rs');rs.textContent='Đang ghi nhận kết quả...';
   try{
     const r=await api({action:'finish',token,ms:total,score:c1});
     if(!r.ok)throw 0;
-    if(!r.eligible)rs.textContent='Bạn chưa đủ 18 tuổi nên chưa thuộc diện nhận quà.';
-    else if(r.late)rs.textContent='Bảng xếp hạng đã chốt lúc 20:00 ngày 21/11 nên lượt chơi này không được xếp hạng.';
+    if(r.late)rs.textContent='Bảng xếp hạng đã chốt lúc 20:00 ngày 21/11 nên lượt chơi này không được xếp hạng.';
     else rs.textContent='Thời gian tốt nhất của bạn: '+fmt(r.best*1000)+'. Hạng hiện tại: '+r.rank+(r.rank<=20?'. Bạn đang trong Top 20!':'.');
   }catch(x){rs.innerHTML='Chưa gửi được kết quả. <a href="#" id="rt2">Gửi lại</a>';$('#rt2').onclick=e=>{e.preventDefault();finish2(total)}}
   loadLb();
@@ -356,7 +360,7 @@ async function finish(){
 async function finish2(total){
   const rs=$('#rs');rs.textContent='Đang gửi lại...';
   try{const r=await api({action:'finish',token,ms:total,score:c1});if(!r.ok)throw 0;
-    rs.textContent=r.eligible?'Thời gian tốt nhất của bạn: '+fmt(r.best*1000)+'. Hạng hiện tại: '+r.rank+'.':'Đã ghi nhận kết quả.';loadLb()}
+    rs.textContent='Thời gian tốt nhất của bạn: '+fmt(r.best*1000)+'. Hạng hiện tại: '+r.rank+'.';loadLb()}
   catch(x){rs.textContent='Vẫn chưa gửi được. Vui lòng mở lại trang và chơi lại.'}
 }
 $('#rp').onclick=()=>{$('#b1').click()};
