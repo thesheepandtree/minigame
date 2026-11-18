@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nurture the Power Within | Fresheen Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+:root{--g1:#88C245;--g2:#4FB988;--g3:#3A7A5C;--ink:#2B2F2C;--bg:#F5FAEF;--line:#cfe3bf;--grad:linear-gradient(90deg,#88C245,#4FB988 55%,#2B2F2C)}
+body{margin:0;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:#fff;border-bottom:2px solid var(--g1);position:sticky;top:0;z-index:5}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo{font-weight:800;font-size:15px;line-height:1;letter-spacing:.04em}
+.tag{font-size:12px;color:var(--g3);font-weight:600}
+#timer{font-weight:800;font-size:20px;font-variant-numeric:tabular-nums;min-width:74px;text-align:right}
+.layout{max-width:1080px;margin:0 auto;padding:14px;display:grid;gap:14px;grid-template-columns:1fr}
+aside{display:none}body.done aside{display:block}
+@media(min-width:900px){.layout{grid-template-columns:1fr 340px;align-items:start}aside{display:block;position:sticky;top:70px}.stage{height:340px!important}.grid{grid-template-columns:repeat(4,1fr)!important}}
+.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 6px 22px rgba(58,122,92,.12)}
+.screen{display:none}.screen.on{display:block}
+h1{font-size:26px;line-height:1.2;margin:0 0 6px;font-weight:800}
+h2{font-size:20px;margin:0 0 8px;font-weight:800;color:var(--g3)}
+p{margin:6px 0}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--g2);outline-offset:1px}
+.btn{display:block;width:100%;margin-top:16px;border:0;border-radius:999px;padding:14px 22px;font:inherit;font-weight:800;color:#fff;background:var(--grad);cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.alt{background:#fff;color:var(--g3);border:2px solid var(--g2)}
+.small{font-size:12.5px;color:#5b6a5f}.warn{color:#b3541e;font-weight:600;font-size:13px}.err{color:#b3261e;font-weight:600;font-size:14px;min-height:20px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13px;font-weight:400;margin-top:14px}.chk input{width:auto;margin-top:3px}
+.bar{height:10px;border-radius:99px;background:#e6f1db;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .3s}
+.row{display:flex;align-items:center;gap:10px}.sp{font-size:34px;line-height:1}
+.stage{position:relative;height:290px;overflow:hidden;border-radius:16px;background:linear-gradient(#eef8e3,#d9f0e3);margin:12px 0}
+#food{position:absolute;left:50%;top:-90px;transform:translateX(-50%);text-align:center;pointer-events:none}
+#fe{font-size:64px;line-height:1}#fn{font-weight:800;font-size:14px;color:var(--g3)}
+@keyframes fall{from{top:-90px}to{top:calc(100% - 100px)}}
+#fb{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-weight:800;font-size:15px;padding:0 8px}.ok{color:var(--g3)}.bad{color:#b3261e}
+.baskets{display:grid;grid-template-columns:1fr 1fr;gap:10px}.baskets button:last-child{grid-column:1/3}
+.bk{border:0;border-radius:16px;padding:16px 8px;font:inherit;font-weight:800;font-size:16px;color:#fff;cursor:pointer}
+.bk.z{background:var(--g1);color:var(--ink)}.bk.m{background:var(--g2)}.bk.n{background:var(--ink)}
+.bk:active{transform:scale(.97)}.bk small{display:block;font-weight:400;font-size:11px;opacity:.85}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.food{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 4px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--ink)}
+.food b{display:block;font-size:30px;line-height:1.1}.food:disabled{opacity:.3;cursor:default}
+.plate{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0}
+.slot{aspect-ratio:1;border:2px dashed var(--g2);border-radius:50%;display:grid;place-items:center;font-size:30px;background:#f3faee;cursor:pointer;padding:0}
+.meter{margin:8px 0}.meter span{font-size:13px;font-weight:600;display:flex;justify-content:space-between}
+ul.k{padding-left:18px;margin:8px 0}ul.k li{margin:4px 0}
+.note{background:#eef8e3;border-left:5px solid var(--g1);border-radius:10px;padding:10px 12px;font-size:14px;margin:10px 0}
+ol#lb{list-style:none;margin:10px 0 0;padding:0}
+#lb li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid #edf4e6;font-size:14px}
+#lb li span:first-child{width:26px;font-weight:800;color:var(--g3)}#lb li span:nth-child(2){flex:1;min-width:0}
+#lb li em{font-style:normal;display:block;font-size:11.5px;color:#6f7e73}#lb li b{font-variant-numeric:tabular-nums}
+#cd{font-weight:800;font-size:13px;color:var(--g3)}
+.big{font-size:44px;font-weight:800;line-height:1.1}
+footer{max-width:1080px;margin:0 auto;padding:6px 16px 28px;font-size:12.5px;color:#4d5b51;text-align:center}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+
+.hero{background:linear-gradient(135deg,#3A7A5C,#2B2F2C);color:#fff;border-radius:18px;padding:18px;text-align:center}
+.hero .h1{font-weight:800;font-size:19px;line-height:1.3;margin:0 0 6px}.hero p{margin:4px 0;font-size:14px;opacity:.95}
+.pl{font-weight:600;font-size:14px;margin-top:12px;color:#cfeeb0}
+.pv{font-weight:800;font-size:clamp(42px,12vw,60px);line-height:1.05;color:#C8F26B;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 6px;text-align:center}
+.journey span{display:block;font-size:11.5px;line-height:1.3;font-weight:600;color:var(--g3)}
+.spr{width:64px;height:64px;margin:0 auto 4px}.spr svg{width:100%;height:100%}.spr.sm{width:52px;height:52px;margin:0;flex:none}.spr.big{width:120px;height:120px}
+.how{background:#f3faee;border-radius:14px;padding:10px 14px;margin:10px 0}.how ol{margin:0;padding-left:20px}.how li{margin:6px 0}
+.cat{font-size:15px;margin:14px 0 0;color:var(--g3)}
+.grid{grid-template-columns:repeat(2,1fr)}
+.food.sel{border-color:var(--g2);background:#eaf7e0;box-shadow:inset 0 0 0 2px var(--g2)}
+.plate{grid-template-columns:repeat(4,1fr)}.ps{text-align:center}.ps .slot{width:100%;cursor:default}.ps small{font-size:12px;font-weight:600}
+#t2{min-height:22px;font-weight:600;font-size:14px;color:var(--g3)}
+.btn.fb{background:#fff;color:#1877f2;border:2px solid #1877f2}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:.25s;z-index:9;max-width:90%;text-align:center;pointer-events:none}
+#toast.on{opacity:1;transform:translateX(-50%)}
+input.invalid{border-color:#b3261e;background:#fff6f5}
+</style>
+</head>
+<body>
+<header class="top">
+  <div><div class="logo grad">FRESHEEN<br>HEALTH</div></div>
+  <div class="tag">Nurture the Power Within</div>
+  <div id="timer" class="grad">0:00.0</div>
+</header>
+
+<div class="layout">
+<main class="card">
+
+  <section id="s-form" class="screen on">
+    <div class="hero">
+      <p class="h1">Về đích nhanh nhất, nhận quà ngay</p>
+      <p>Hoàn thành 2 chặng game với tốc độ nhanh nhất. Top 20 người nhanh nhất, chốt lúc <b>20:00 ngày 21/11/2026</b>, sẽ nhận ngay phần quà từ Fresheen Health.</p>
+      <div class="pl">Tổng giá trị giải thưởng</div>
+      <div class="pv">3.500.000đ</div>
+    </div>
+    <div class="journey">
+      <div><div class="spr" data-s="0"></div><span>Mầm Cây đang cần vi chất</span></div>
+      <div><div class="spr" data-s="1"></div><span>Chặng 1: Mầm Cây học về vi chất</span></div>
+      <div><div class="spr" data-s="2"></div><span>Chặng 2: Mầm Cây bổ sung vi chất</span></div>
+      <div><div class="spr" data-s="3"></div><span>Mầm Cây nở hoa</span></div>
+    </div>
+    <h2>Điền thông tin để bắt đầu</h2>
+    <div id="form">
+      <label for="name">Họ tên</label><input id="name" required maxlength="40" autocomplete="name">
+      <label for="phone">Số điện thoại</label><input id="phone" required inputmode="tel" maxlength="12" autocomplete="tel" placeholder="09xxxxxxxx"><div id="phw" class="warn" hidden></div>
+      <label for="addr">Địa chỉ nhận quà</label><input id="addr" required maxlength="200" autocomplete="street-address">
+      <label for="yob">Năm sinh</label><input id="yob" type="number" required min="1920" max="2025" inputmode="numeric" placeholder="Ví dụ: 1995">
+      <div id="agew" class="warn" hidden>Kẽm Amagain &amp; Magie Amagain chỉ dành cho người trên 18 tuổi. Bạn vẫn chơi được, nhưng không nằm trong danh sách nhận quà.</div>
+      <label for="veg">Bạn có ăn chay không?</label>
+      <select id="veg"><option value="Không">Tôi không ăn chay</option><option value="Thỉnh thoảng">Thỉnh thoảng ăn chay</option><option value="Ăn chay trường">Ăn chay trường</option></select>
+      <label class="chk"><input type="checkbox" id="ok" required> Tôi đồng ý để Fresheen Health lưu thông tin này để liên hệ trao quà và tôi đã đọc thể lệ chương trình.</label>
+      <div id="err" class="err" role="alert"></div>
+      <button class="btn" id="go" type="button">Bắt đầu hành trình</button>
+    </div>
+  </section>
+
+  <section id="s-i1" class="screen">
+    <div class="spr big" data-s="1"></div>
+    <h2>Chặng 1: Mầm Cây học về vi chất</h2>
+    <p>Mầm Cây cần biết thực phẩm nào chứa Kẽm và Magie. Bạn giúp bạn ấy học bằng cách phân loại thực phẩm nhé.</p>
+    <div class="how"><b>Cách chơi</b><ol>
+      <li>Một món ăn sẽ rơi từ trên xuống, có tất cả 12 món.</li>
+      <li>Trước khi món chạm đáy, bấm <b>Giỏ Kẽm</b>, <b>Giỏ Magie</b> hoặc <b>Không liên quan</b>.<br><span class="small">Ví dụ: 🦪 Hàu → Giỏ Kẽm · 🍌 Chuối → Giỏ Magie · 🍩 Donut → Không liên quan</span></li>
+      <li>Chọn đúng thì Mầm Cây lớn thêm. Chọn sai hoặc để rơi mất bị cộng 3 giây.</li>
+      <li>Trên máy tính có thể dùng phím ← (Kẽm), → (Magie), ↓ (Không liên quan).</li></ol></div>
+    <p class="small">Thời gian của bạn bắt đầu tính khi bấm nút bên dưới.</p>
+    <div id="e1" class="err"></div>
+    <button class="btn" id="b1">Bắt đầu chặng 1</button>
+  </section>
+
+  <section id="s-g1" class="screen">
+    <div class="row"><div class="spr sm" id="sp1"></div><div style="flex:1"><div class="small">Mầm Cây đang học về vi chất</div><div class="bar"><i id="p1"></i></div></div></div>
+    <div class="stage"><div id="food"><div id="fe"></div><div id="fn"></div></div><div id="fb"></div></div>
+    <div class="baskets">
+      <button class="bk z" data-a="z">Giỏ Kẽm<small>←</small></button>
+      <button class="bk m" data-a="m">Giỏ Magie<small>→</small></button>
+      <button class="bk n" data-a="n">Không liên quan<small>↓</small></button>
+    </div>
+  </section>
+
+  <section id="s-i2" class="screen">
+    <div class="spr big" data-s="2"></div>
+    <h2>Chặng 2: Mầm Cây bổ sung vi chất</h2>
+    <p class="small">Thời gian đang tạm dừng trong lúc bạn đọc.</p>
+    <div class="note"><b>Vì sao người ăn chay dễ thiếu Kẽm?</b><br>Nguồn kẽm dồi dào nhất là thịt đỏ và hải sản. Kẽm từ thực vật khó hấp thu hơn vì có phytate trong ngũ cốc và các loại đậu.</div>
+    <p><b>Thiếu kẽm có thể dẫn đến:</b></p>
+    <ul class="k"><li>Dễ ốm vặt, sức đề kháng giảm</li><li>Vết thương lâu lành</li><li>Giảm vị giác, ăn kém ngon</li><li>Rụng tóc, da kém khỏe</li></ul>
+    <div class="how"><b>Cách chơi</b><ol>
+      <li>Bạn sẽ dọn một mâm cơm Việt gồm 4 phần: <b>Cơm, Rau, Canh</b> và <b>Món mặn</b> (người ăn chay chọn món đạm chay để bổ sung protein).</li>
+      <li>Mỗi phần chọn 1 món. Chạm món khác để đổi, chạm lại món đang chọn để bỏ.</li>
+      <li>Làm đầy cả thanh <b>Kẽm</b> và thanh <b>Magie</b> lên 100. Món từ hạt, đậu, rau xanh đậm thường nhiều vi chất hơn.</li>
+      <li>Khi đủ 4 phần và hai thanh đã đầy, bấm <b>Hoàn thành</b>.</li></ol></div>
+    <button class="btn" id="b2">Bắt đầu chặng 2</button>
+  </section>
+
+  <section id="s-g2" class="screen">
+    <div class="row"><div class="spr sm" id="sp2"></div><div><b>Chặng 2: Mầm Cây bổ sung vi chất</b><div class="small">Chọn 1 món cho mỗi phần của mâm cơm</div></div></div>
+    <div class="plate" id="plate"></div>
+    <div class="meter"><span><i>Kẽm</i><i id="zv">0/100</i></span><div class="bar"><i id="zb"></i></div></div>
+    <div class="meter"><span><i>Magie</i><i id="mv">0/100</i></span><div class="bar"><i id="mb"></i></div></div>
+    <div id="t2"></div>
+    <div id="cats"></div>
+    <p class="small">Chỉ số là điểm minh họa cho trò chơi, không phải hàm lượng thực tế.</p>
+    <button class="btn" id="d2" disabled>Hoàn thành mâm cơm</button>
+  </section>
+
+  <section id="s-res" class="screen">
+    <div class="spr big" data-s="3"></div>
+    <h2>Chúc mừng bạn đã hoàn thành 2 chặng và giúp Mầm Cây nở hoa!</h2>
+    <p class="small" style="margin-bottom:0">Thời gian của bạn</p>
+    <div class="big grad" id="rt">0:00.0</div>
+    <p id="rs" class="small">Đang ghi nhận kết quả...</p>
+    <div class="note" id="prz"></div>
+    <div class="note"><b>Kẽm</b> có trong hàu, thịt bò, hạt bí, hạt điều, đậu gà, đậu lăng, yến mạch.<br><b>Magie</b> có trong hạnh nhân, rau bina, chuối, bơ, gạo lứt, chocolate đen, hạt bí.<br>Người ăn chay nên ngâm đậu, hạt và ăn đa dạng hạt mỗi ngày để bổ sung kẽm tốt hơn.</div>
+    <p class="small">Khi cần bổ sung thêm, bạn có thể tham khảo Kẽm Amagain &amp; Magie Amagain (chỉ dành cho người trên 18 tuổi).</p>
+    <button class="btn share">Chia sẻ game cho bạn bè</button>
+    <button class="btn fb-b alt" id="rp">Chơi lại để cải thiện thời gian</button>
+  </section>
+</main>
+
+<aside class="card">
+  <h2>Top 20 nhanh nhất</h2>
+  <div id="cd"></div>
+  <ol id="lb"></ol>
+  <p class="small">Chỉ tính người chơi từ 18 tuổi. Mỗi số điện thoại giữ một kết quả tốt nhất. Danh sách chốt lúc 20:00 ngày 21/11.</p>
+<button class="btn share">Rủ bạn bè cùng chơi</button>
+  <button class="btn fb">Chia sẻ lên Facebook</button>
+</aside>
+</div>
+
+<div id="toast" role="status"></div>
+<footer>Kẽm Amagain &amp; Magie Amagain chỉ dành cho người trên 18 tuổi.<br><b>Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</b></footer>
+
+<script>
+// Dán URL Web App của Google Apps Script vào đây. Để trống = chạy thử, không lưu dữ liệu.
+const API_URL='';
+const DEADLINE=new Date('2026-11-21T20:00:00+07:00').getTime();
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const sh=a=>[...a].sort(()=>Math.random()-.5);
+const P={};let token='',pen=0,acc=0,t0=0,run=false,c1=0,items=[],idx=0,lock=false,tm,plate=[],last=null;
+
+async function api(body){
+  if(!API_URL){ // chế độ chạy thử
+    if(body.action==='begin')return{ok:true,token:'demo'};
+    if(body.action==='finish')return{ok:true,best:body.ms/1000,rank:'-',eligible:P.age>=18};
+    return{ok:true};
+  }
+  const r=await fetch(API_URL,{method:'POST',body:JSON.stringify(body)});
+  return r.json();
+}
+function show(id){$$('.screen').forEach(e=>e.classList.toggle('on',e.id===id));scrollTo(0,0)}
+const ms=()=>acc+(run?performance.now()-t0:0)+pen;
+const fmt=v=>{const s=v/1000;return Math.floor(s/60)+':'+(s%60).toFixed(1).padStart(4,'0')};
+const tRun=()=>{if(!run){t0=performance.now();run=true}};
+const tStop=()=>{if(run){acc+=performance.now()-t0;run=false}};
+setInterval(()=>{$('#timer').textContent=fmt(ms())},100);
+
+/* ---- Hình Mầm Cây ---- */
+const leaf=(x,y,r,c)=>`<ellipse cx="${x}" cy="${y}" rx="15" ry="6.5" fill="${c}" transform="rotate(${r} ${x} ${y})"/>`;
+function S(s){
+  const g='#88C245',t='#4FB988',p='#C9CF8A';
+  let b='<ellipse cx="60" cy="108" rx="36" ry="8" fill="#7A5C3E"/>';
+  if(s===0){b+='<path d="M60 106C60 86 64 72 84 66" fill="none" stroke="#B5BE70" stroke-width="5" stroke-linecap="round"/>'+leaf(76,80,60,p)+leaf(86,64,15,p)+'<path d="M26 34q8 12 0 20q-8-8 0-20z" fill="#6FB6E8"/>'}
+  else{
+    const h=s===1?74:s===2?58:52;
+    b+=`<path d="M60 106V${h}" stroke="#3A7A5C" stroke-width="5" stroke-linecap="round"/>`+leaf(45,92,-30,g)+leaf(75,88,30,t);
+    if(s===1)b+=leaf(60,h-2,-90,g)+'<text x="82" y="52" font-size="16">✨</text>';
+    if(s>=2)b+=leaf(45,74,-35,t)+leaf(75,70,35,g);
+    if(s===2)b+='<circle cx="60" cy="52" r="7" fill="#9AD66B"/>';
+    if(s===3){for(let a=0;a<360;a+=60)b+=`<ellipse cx="60" cy="33" rx="7" ry="11" fill="#F7A8C4" transform="rotate(${a} 60 44)"/>`;b+='<circle cx="60" cy="44" r="7" fill="#FFD54F"/>'}
+  }
+  return `<svg viewBox="0 0 120 120" role="img" aria-label="Mầm Cây"><title>Mầm Cây</title>${b}</svg>`;
+}
+const setSpr=(id,s)=>{const e=$('#'+id);if(e.dataset.s!=s){e.dataset.s=s;e.innerHTML=S(s)}};
+const paint=()=>$$('.spr[data-s]').forEach(e=>e.innerHTML=S(+e.dataset.s));
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800)}
+
+/* ---- Form ---- */
+const YEAR=new Date().getFullYear();
+$('#yob').oninput=e=>{const v=e.target.value,a=YEAR-+v;$('#agew').hidden=!(v.length===4&&a>=0&&a<18)};
+function phoneMsg(v){
+  if(!v)return'Vui lòng nhập số điện thoại.';
+  if(/\D/.test(v))return'Số điện thoại chỉ gồm chữ số.';
+  if(v[0]!=='0')return'Số điện thoại phải bắt đầu bằng số 0.';
+  if(v.length<10)return'Số điện thoại còn thiếu '+(10-v.length)+' số (cần đủ 10 số).';
+  if(v.length>10)return'Số điện thoại thừa số, cần đúng 10 số.';
+  return'';
+}
+$('#phone').oninput=e=>{const v=e.target.value.replace(/[\s.\-]/g,''),m=v?phoneMsg(v):'';$('#phw').textContent=m;$('#phw').hidden=!m;e.target.classList.toggle('invalid',!!m)};
+$$('#form input').forEach(i=>i.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#go').click()}});
+$('#go').onclick=async()=>{
+  const b=$('#go'),er=$('#err');er.textContent='';
+  Object.assign(P,{name:$('#name').value.trim(),phone:$('#phone').value.replace(/[\s.\-]/g,''),address:$('#addr').value.trim(),birthYear:+$('#yob').value,veg:$('#veg').value});
+  P.age=YEAR-P.birthYear;
+  if(!P.name||!P.address){er.textContent='Vui lòng điền đủ họ tên và địa chỉ.';return}
+  const pm=phoneMsg(P.phone);
+  if(pm){er.textContent=pm;$('#phw').textContent=pm;$('#phw').hidden=false;$('#phone').classList.add('invalid');$('#phone').focus();return}
+  if(!(P.birthYear>=1920&&P.birthYear<=YEAR-5)){er.textContent='Vui lòng nhập năm sinh gồm 4 số, ví dụ 1995.';return}
+  if(!$('#ok').checked){er.textContent='Vui lòng tick đồng ý để tiếp tục.';return}
+  b.disabled=true;
+  try{const r=await api({action:'register',...P});if(!r.ok)throw 0;show('s-i1')}
+  catch(x){er.textContent='Chưa lưu được thông tin. Kiểm tra mạng và bấm lại.'}
+  b.disabled=false;
+};
+
+/* ---- Chặng 1 ---- */
+const Z=[['Hàu','🦪'],['Thịt bò','🥩'],['Hạt điều','🥜'],['Đậu gà','🧆'],['Yến mạch','🥣']];
+const M=[['Hạnh nhân','🌰'],['Rau bina','🥬'],['Chuối','🍌'],['Bơ','🥑'],['Chocolate đen','🍫'],['Gạo lứt','🍚']];
+const N=[['Nước ngọt','🥤'],['Donut','🍩'],['Khoai tây chiên','🍟'],['Kẹo dẻo','🍬']];
+const NOTE={z:'giàu Kẽm',m:'giàu Magie',n:'ít Kẽm và Magie'};
+$('#b1').onclick=async()=>{
+  $('#e1').textContent='';
+  try{const r=await api({action:'begin',phone:P.phone});if(!r.token)throw 0;token=r.token}
+  catch(x){$('#e1').textContent='Chưa kết nối được máy chủ. Vui lòng thử lại.';return}
+  acc=0;pen=0;run=false;c1=0;idx=0;
+  items=sh([...sh(Z).slice(0,4).map(x=>({n:x[0],e:x[1],t:'z'})),...sh(M).slice(0,4).map(x=>({n:x[0],e:x[1],t:'m'})),...sh(N).slice(0,4).map(x=>({n:x[0],e:x[1],t:'n'}))]);
+  show('s-g1');tRun();next();
+};
+function upd1(){setSpr('sp1',c1>=8?2:1);$('#p1').style.width=idx/12*100+'%'}
+function next(){
+  if(idx>=items.length){setTimeout(()=>{tStop();show('s-i2')},300);return}
+  const it=items[idx],f=$('#food'),d=Math.max(1800,3400-idx*120);
+  $('#fe').textContent=it.e;$('#fn').textContent=it.n;$('#fb').textContent='';
+  f.style.animation='none';void f.offsetWidth;f.style.animation=`fall ${d}ms linear forwards`;
+  lock=false;clearTimeout(tm);tm=setTimeout(()=>ans(null),d);upd1();
+}
+function ans(a){
+  if(lock)return;lock=true;clearTimeout(tm);
+  const it=items[idx],ok=a===it.t;
+  if(ok)c1++;else pen+=3000;
+  $('#food').style.animation='none';
+  const fb=$('#fb');fb.className=ok?'ok':'bad';
+  fb.textContent=(ok?'Đúng: ':'Chưa đúng: ')+it.n+' '+NOTE[it.t]+(ok?'':' (+3 giây)');
+  idx++;upd1();setTimeout(next,550);
+}
+$$('.bk').forEach(b=>b.onclick=()=>ans(b.dataset.a));
+addEventListener('keydown',e=>{
+  if(!$('#s-g1').classList.contains('on'))return;
+  const k={ArrowLeft:'z',ArrowRight:'m',ArrowDown:'n'}[e.key];
+  if(k){e.preventDefault();ans(k)}
+});
+
+/* ---- Chặng 2: mâm cơm Việt (điểm = [kẽm, magie] minh họa) ---- */
+const COM=[['Cơm trộn đậu & mè','🥣',30,30],['Cơm gạo lứt','🍙',20,25],['Cơm trắng','🍚',5,5],['Bún','🍜',4,4]];
+const RAU=[['Rau bina xào tỏi','🥬',15,35],['Rau muống luộc','🌿',8,20],['Cải luộc','🥦',3,8],['Dưa leo cà chua','🥒',2,5]];
+const CANH=[['Canh nấm đậu hũ','🍄',25,20],['Canh bí đỏ','🟠',10,18],['Canh rau ngót','🍃',5,15],['Canh chua','🍅',2,5]];
+const MEAT=[['Hàu hấp gừng','🦪',65,10],['Thịt bò xào','🥩',45,15],['Cá kho','🐟',12,12],['Xúc xích chiên','🌭',3,3]];
+const VEG=[['Đậu lăng hầm hạt bí','🍛',40,35],['Đậu gà sốt cà','🧆',35,25],['Đậu hũ sốt cà','🟨',25,25],['Đậu hũ chiên','🍢',15,10]];
+$('#b2').onclick=()=>{tRun();build2();show('s-g2')};
+function build2(){
+  plate={};const vg=P.veg==='Ăn chay trường';
+  const cats=[{k:'com',t:'🍚 Cơm',l:'Cơm',o:COM},{k:'rau',t:'🥬 Rau',l:'Rau',o:RAU},{k:'canh',t:'🍲 Canh',l:'Canh',o:CANH},
+    {k:'man',t:vg?'🍛 Món đạm chay (bổ sung protein)':'🍛 Món mặn hoặc đạm chay',l:vg?'Đạm chay':'Món mặn',o:vg?VEG:[...MEAT.slice(0,3),...VEG.slice(0,3)]}];
+  const c=$('#cats'),pl=$('#plate');c.textContent='';pl.textContent='';
+  cats.forEach(ct=>{
+    const h=document.createElement('h3');h.className='cat';h.textContent=ct.t;
+    const g=document.createElement('div');g.className='grid';
+    ct.o.forEach(f=>{const b=document.createElement('button');b.className='food';b.dataset.k=ct.k;b.innerHTML='<b></b><span></span>';
+      b.firstChild.textContent=f[1];b.lastChild.textContent=f[0];b._f=f;
+      b.onclick=()=>{plate[ct.k]=plate[ct.k]===f?null:f;refresh()};g.appendChild(b)});
+    c.append(h,g);
+    const ps=document.createElement('div');ps.className='ps';ps.dataset.k=ct.k;ps.innerHTML='<div class="slot"></div><small></small>';ps.lastChild.textContent=ct.l;pl.appendChild(ps);
+  });
+  refresh();
+}
+function refresh(){
+  $$('#cats .food').forEach(b=>b.classList.toggle('sel',plate[b.dataset.k]===b._f));
+  $$('#plate .ps').forEach(p=>{p.firstChild.textContent=plate[p.dataset.k]?plate[p.dataset.k][1]:''});
+  const v=Object.values(plate).filter(Boolean),z=v.reduce((a,f)=>a+f[2],0),m=v.reduce((a,f)=>a+f[3],0),full=v.length===4;
+  $('#zv').textContent=Math.min(z,100)+'/100';$('#mv').textContent=Math.min(m,100)+'/100';
+  $('#zb').style.width=Math.min(z,100)+'%';$('#mb').style.width=Math.min(m,100)+'%';
+  const okk=full&&z>=100&&m>=100;
+  $('#t2').textContent=!full?'Chọn đủ 4 phần cho mâm cơm.':okk?'Mâm đã đủ Kẽm và Magie. Bấm Hoàn thành!':z<100&&m<100?'Mâm còn thiếu cả Kẽm và Magie. Thử đổi sang món từ hạt, đậu, rau xanh đậm.':z<100?'Mâm còn thiếu Kẽm. Thử đổi món ở phần Cơm hoặc Món mặn.':'Mâm còn thiếu Magie. Thử đổi món ở phần Rau hoặc Canh.';
+  setSpr('sp2',okk?3:Math.min(z,m)>=50?2:1);
+  $('#d2').disabled=!okk;
+}
+$('#d2').onclick=()=>finish();
+
+/* ---- Kết quả, chia sẻ & bảng xếp hạng ---- */
+async function finish(){
+  tStop();const total=Math.round(ms());
+  $('#rt').textContent=fmt(total);document.body.classList.add('done');show('s-res');
+  $('#prz').innerHTML=P.age>=18?'Bạn có cơ hội nhận <b>01 gói Chelamax Zinc Biglycinate</b> nếu nằm trong <b>Top 20 người nhanh nhất</b> khi bảng xếp hạng chốt lúc <b>20:00 ngày 21/11/2026</b>.':'Phần quà chỉ dành cho người từ 18 tuổi trở lên. Cảm ơn bạn đã cùng Mầm Cây nở hoa!';
+  const rs=$('#rs');rs.textContent='Đang ghi nhận kết quả...';
+  try{
+    const r=await api({action:'finish',token,ms:total,score:c1});
+    if(!r.ok)throw 0;
+    if(!r.eligible)rs.textContent='Bạn chưa đủ 18 tuổi nên chưa thuộc diện nhận quà.';
+    else if(r.late)rs.textContent='Bảng xếp hạng đã chốt lúc 20:00 ngày 21/11 nên lượt chơi này không được xếp hạng.';
+    else rs.textContent='Thời gian tốt nhất của bạn: '+fmt(r.best*1000)+'. Hạng hiện tại: '+r.rank+(r.rank<=20?'. Bạn đang trong Top 20!':'.');
+  }catch(x){rs.innerHTML='Chưa gửi được kết quả. <a href="#" id="rt2">Gửi lại</a>';$('#rt2').onclick=e=>{e.preventDefault();finish2(total)}}
+  loadLb();
+}
+async function finish2(total){
+  const rs=$('#rs');rs.textContent='Đang gửi lại...';
+  try{const r=await api({action:'finish',token,ms:total,score:c1});if(!r.ok)throw 0;
+    rs.textContent=r.eligible?'Thời gian tốt nhất của bạn: '+fmt(r.best*1000)+'. Hạng hiện tại: '+r.rank+'.':'Đã ghi nhận kết quả.';loadLb()}
+  catch(x){rs.textContent='Vẫn chưa gửi được. Vui lòng mở lại trang và chơi lại.'}
+}
+$('#rp').onclick=()=>{$('#b1').click()};
+function shareGame(){
+  const url=location.href.split('#')[0],text='Mình vừa giúp Mầm Cây nở hoa trong game "Nurture the Power Within" của Fresheen Health. Chơi thử xem ai nhanh hơn, Top 20 người nhanh nhất có quà nhé!';
+  if(navigator.share){navigator.share({title:'Nurture the Power Within',text,url}).catch(()=>{});return}
+  const c=text+' '+url;
+  (navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).then(()=>toast('Đã sao chép nội dung chia sẻ. Hãy dán gửi bạn bè nhé!')).catch(()=>prompt('Sao chép nội dung này để gửi bạn bè:',c));
+}
+$$('.share').forEach(b=>b.onclick=shareGame);
+$$('.btn.fb').forEach(b=>b.onclick=()=>window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href.split('#')[0]),'_blank','noopener'));
+paint();
+async function loadLb(){
+  const ol=$('#lb');
+  try{
+    const d=API_URL?await (await fetch(API_URL+'?action=top')).json():{top:[]};
+    ol.textContent='';
+    if(!d.top.length){ol.innerHTML='<li>Chưa có ai trên bảng. Hãy là người đầu tiên!</li>';return}
+    d.top.forEach(r=>{const li=document.createElement('li');
+      li.innerHTML='<span></span><span><strong></strong><em></em></span><b></b>';
+      li.children[0].textContent=r.rank;li.querySelector('strong').textContent=r.name;li.querySelector('em').textContent=r.phone;li.children[2].textContent=fmt(r.t*1000);
+      ol.appendChild(li)});
+  }catch(x){ol.innerHTML='<li>Chưa tải được bảng xếp hạng.</li>'}
+}
+function cd(){
+  const d=DEADLINE-Date.now(),el=$('#cd');
+  if(d<=0){el.textContent='Bảng xếp hạng đã chốt';return}
+  const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),Mi=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
+  el.textContent='Chốt sau '+D+' ngày '+[H,Mi,S].map(n=>String(n).padStart(2,'0')).join(':');
+}
+cd();setInterval(cd,1000);loadLb();setInterval(loadLb,30000);
+</script>
+</body>
+</html>
