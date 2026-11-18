@@ -96,7 +96,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
       <p>Hoàn thành 2 chặng game với tốc độ nhanh nhất. Top 20 người nhanh nhất, chốt lúc <b>20:00 ngày 21/11/2026</b>, sẽ nhận ngay phần quà từ Fresheen Health.</p>
       <div class="pl">Tổng giá trị giải thưởng</div>
       <div class="pv">3.500.000đ</div>
-      <p style="font-size:13px">20 phần quà, mỗi phần 01 gói Chelamax Zinc Biglycinate (giá niêm yết 175.000đ/gói)</p>
+      <p style="font-size:13px">20 PHẦN QUÀ - 20 GÓI VIÊN KẼM AMAGAIN</p>
     </div>
     <div class="journey">
       <div><div class="spr" data-s="0"></div><span>Mầm Cây đang cần vi chất</span></div>
@@ -196,7 +196,7 @@ input.invalid{border-color:#b3261e;background:#fff6f5}
 </div>
 
 <div id="toast" role="status"></div>
-<footer>Kẽm Amagain &amp; Magie Amagain chỉ dành cho người trên 18 tuổi.<br><b>Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</b></footer>
+<footer>VIÊN KẼM AMAGAIN &amp; VIÊN MAGIE AMAGAIN chỉ dành cho người trên 18 tuổi.<br><b>Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</b></footer>
 
 <script>
 // Dán URL Web App của Google Apps Script vào đây. Để trống = chạy thử, không lưu dữ liệu.
@@ -347,7 +347,7 @@ $('#d2').onclick=()=>finish();
 async function finish(){
   tStop();const total=Math.round(ms());
   $('#rt').textContent=fmt(total);document.body.classList.add('done');show('s-res');
-  $('#prz').innerHTML='Bạn có cơ hội nhận <b>01 gói Chelamax Zinc Biglycinate</b> nếu nằm trong <b>Top 20 người nhanh nhất</b> khi bảng xếp hạng chốt lúc <b>20:00 ngày 21/11/2026</b>.'+(P.age<18?'<br><span class="small">Lưu ý: sản phẩm không dành cho người dưới 18 tuổi sử dụng.</span>':'');
+  $('#prz').innerHTML='Bạn có cơ hội nhận <b>01 gói VIÊN KẼM AMAGAIN</b> nếu nằm trong <b>Top 20 người nhanh nhất</b> khi bảng xếp hạng chốt lúc <b>20:00 ngày 21/11/2026</b>.'+(P.age<18?'<br><span class="small">Lưu ý: sản phẩm không dành cho người dưới 18 tuổi sử dụng.</span>':'');
   const rs=$('#rs');rs.textContent='Đang ghi nhận kết quả...';
   try{
     const r=await api({action:'finish',token,ms:total,score:c1});
